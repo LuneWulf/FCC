@@ -91,7 +91,7 @@ void PrintSolutions(int i, struct Guns *Gun, struct Aimpoints *Aimpoint, struct 
 
     const double Range = sqrt( dX*dX + dY*dY);
 
-    printf("------------- Gun #%d Fire Solutions -------------\n\n", i + 1);
+    printf("----------- Gun #%d Fire Solutions -----------\n\n", i + 1);
     printf("Charge: %d\n", Charge);
     printf("Target Range: %.f m\n", Range);
     printf("Charge Max Range: %.f m\n\n", Charges->MaxRange[Charge]);
@@ -114,36 +114,38 @@ void PrintSolutions(int i, struct Guns *Gun, struct Aimpoints *Aimpoint, struct 
             const double LowDefDiff = Gun->Data[i].DeflectionLow - Dir;
 
             printf("High Angle:\n");
-            printf("         Deflection:  %.2f deg  / %.1f mills,\n", Gun->Data[i].DeflectionHigh * RAD_TO_DEG, Gun->Data[i].DeflectionHigh * RAD_TO_MILLS);
-            printf("        dDeflection:  %.2f deg  / %.1f mills,\n", HighDefDiff * RAD_TO_DEG, HighDefDiff * RAD_TO_MILLS);
-            printf("           Quadrant:  %.2f deg  /  %.f mills,\n", Gun->Data[i].QuadrantHigh * RAD_TO_DEG, Gun->Data[i].QuadrantHigh * RAD_TO_MILLS);
-            printf("                ToF:  %.2f s,\n", Gun->Data[i].ToFHigh);
-            printf("                AOI:  %.2f deg,\n", Gun->Data[i].AOIHigh * RAD_TO_DEG);
-            printf("  Summit & Distance:  %.f m / %.f m\n", Gun->Data[i].SummitHigh, Gun->Data[i].SummitDisHigh);
-            printf("          Hit Error:  %.3f m\n", Gun->Data[i].DisErHigh);
-            printf("          Max Error:  %.3f m\n\n", Cfg->MaxError);
+            printf("|    Deflection:  %.2f deg  / %.1f mills,\n", Gun->Data[i].DeflectionHigh * RAD_TO_DEG, Gun->Data[i].DeflectionHigh * RAD_TO_MILLS);
+            printf("|   dDeflection:  %.2f deg  / %.1f mills,\n", HighDefDiff * RAD_TO_DEG, HighDefDiff * RAD_TO_MILLS);
+            printf("|      Quadrant:  %.2f deg  /  %.f mills,\n", Gun->Data[i].QuadrantHigh * RAD_TO_DEG, Gun->Data[i].QuadrantHigh * RAD_TO_MILLS);
+            printf("|           ToF:  %.2f s,\n", Gun->Data[i].ToFHigh);
+            printf("|           AOI:  %.2f deg,\n", Gun->Data[i].AOIHigh * RAD_TO_DEG);
+            printf("|        Summit:  %.f m,\n", Gun->Data[i].SummitHigh);
+            printf("|  Summit Range:  %.f m,\n", Gun->Data[i].SummitDisHigh);
+            printf("|     Hit Error:  %.3f m,\n", Gun->Data[i].DisErHigh);
+            printf("|     Max Error:  %.3f m\n\n", Cfg->MaxError);
 
             printf("Low Angle:\n");
-            printf("         Deflection:  %.2f deg  / %.1f mills,\n", Gun->Data[i].DeflectionLow * RAD_TO_DEG, Gun->Data[i].DeflectionLow * RAD_TO_MILLS);
-            printf("        dDeflection:  %.2f deg  / %.1f mills,\n", LowDefDiff * RAD_TO_DEG, LowDefDiff * RAD_TO_MILLS);
-            printf("           Quadrant:  %.2f deg  /  %.f mills,\n", Gun->Data[i].QuadrantLow * RAD_TO_DEG, Gun->Data[i].QuadrantLow * RAD_TO_MILLS);
-            printf("                ToF:  %.2f s,\n", Gun->Data[i].ToFLow);
-            printf("                AOI:  %.2f deg,\n", Gun->Data[i].AOILow * RAD_TO_DEG);
-            printf("  Summit & Distance:  %.f m / %.f m\n", Gun->Data[i].SummitLow, Gun->Data[i].SummitDisLow);
-            printf("          Hit Error:  %.3f m\n", Gun->Data[i].DisErLow);
-            printf("          Max Error:  %.3f m\n\n", Cfg->MaxError);
+            printf("|    Deflection:  %.2f deg  / %.1f mills,\n", Gun->Data[i].DeflectionLow * RAD_TO_DEG, Gun->Data[i].DeflectionLow * RAD_TO_MILLS);
+            printf("|   dDeflection:  %.2f deg  / %.1f mills,\n", LowDefDiff * RAD_TO_DEG, LowDefDiff * RAD_TO_MILLS);
+            printf("|      Quadrant:  %.2f deg  /  %.f mills,\n", Gun->Data[i].QuadrantLow * RAD_TO_DEG, Gun->Data[i].QuadrantLow * RAD_TO_MILLS);
+            printf("|           ToF:  %.2f s,\n", Gun->Data[i].ToFLow);
+            printf("|           AOI:  %.2f deg,\n", Gun->Data[i].AOILow * RAD_TO_DEG);
+            printf("|        Summit:  %.f m,\n", Gun->Data[i].SummitLow);
+            printf("|  Summit Range:  %.f m,\n", Gun->Data[i].SummitDisLow);
+            printf("|     Hit Error:  %.3f m,\n", Gun->Data[i].DisErLow);
+            printf("|     Max Error:  %.3f m\n\n", Cfg->MaxError);
 
         } else {
 
             printf("High Angle:\n");
-            printf("         Deflection:  %.2f deg  / %.1f mills,\n", Gun->Data[i].DeflectionHigh * RAD_TO_DEG, Gun->Data[i].DeflectionHigh * RAD_TO_MILLS);
-            printf("           Quadrant:  %.2f deg  /  %.1f mills,\n", Gun->Data[i].QuadrantHigh * RAD_TO_DEG, Gun->Data[i].QuadrantHigh * RAD_TO_MILLS);
-            printf("                ToF:  %.2f s\n\n", Gun->Data[i].ToFHigh);
+            printf("|    Deflection:  %.2f deg  / %.1f mills,\n", Gun->Data[i].DeflectionHigh * RAD_TO_DEG, Gun->Data[i].DeflectionHigh * RAD_TO_MILLS);
+            printf("|      Quadrant:  %.2f deg  /  %.1f mills,\n", Gun->Data[i].QuadrantHigh * RAD_TO_DEG, Gun->Data[i].QuadrantHigh * RAD_TO_MILLS);
+            printf("|           ToF:  %.2f s\n\n", Gun->Data[i].ToFHigh);
 
             printf("Low Angle:\n");
-            printf("         Deflection:  %.2f deg  / %.1f mills,\n", Gun->Data[i].DeflectionLow * RAD_TO_DEG, Gun->Data[i].DeflectionLow * RAD_TO_MILLS);
-            printf("           Quadrant:  %.2f deg  /  %.1f mills,\n", Gun->Data[i].QuadrantLow * RAD_TO_DEG, Gun->Data[i].QuadrantLow * RAD_TO_MILLS);
-            printf("                ToF:  %.2f s\n\n", Gun->Data[i].ToFLow);
+            printf("|    Deflection:  %.2f deg  / %.1f mills,\n", Gun->Data[i].DeflectionLow * RAD_TO_DEG, Gun->Data[i].DeflectionLow * RAD_TO_MILLS);
+            printf("|      Quadrant:  %.2f deg  /  %.1f mills,\n", Gun->Data[i].QuadrantLow * RAD_TO_DEG, Gun->Data[i].QuadrantLow * RAD_TO_MILLS);
+            printf("|           ToF:  %.2f s\n\n", Gun->Data[i].ToFLow);
         }
     }
 }
