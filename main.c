@@ -4,113 +4,7 @@
 #include <math.h>
 #include "Headers/mainInclude.h"
 
-/*
 
-#define RAD_TO_DEG ((double) 180 / M_PI)
-#define RAD_TO_MILLS ((double) 3200 / M_PI)
-#define DEG_TO_RAD (M_PI / (double) 180)
-
-struct Ammo {
-    double MuzzVel[20];
-    double MaxRange[20];
-    int ChargeAmount;
-};
-struct MR {
-    double Quadrant;
-    double Range;
-};
-struct Vector3D {
-    double x;
-    double y;
-    double z;
-};
-struct Vector2D {
-    double x;
-    double y;
-};
-struct Adjustments {
-    double Range;
-    double Lat;
-    double NS;
-    double EW;
-};
-struct Config {
-    double dt;
-    double kFactor;
-    double MaxError;
-    int FullInfo;
-    int FindCharge;
-};
-struct Aimpoints {
-    struct Vector3D Aimpoint[30];
-    int SheafType;
-    int amount;
-};
-struct BoundingGrids {
-    struct Vector3D Grid[10];
-    int GridAmount;
-    double length;
-    double width;
-    double attitude;
-    double radius;
-    int SheafType;
-};
-struct FireData {
-    int Charge;
-    double DeflectionHigh;
-    double DeflectionLow;
-    double QuadrantHigh;
-    double QuadrantLow;
-    double ToFHigh;
-    double ToFLow;
-    double AOIHigh;
-    double AOILow;
-    double SummitHigh;
-    double SummitLow;
-    double SummitDisHigh;
-    double SummitDisLow;
-    double DisErHigh;
-    double DisErLow;
-    double DistanceTravelled;
-};
-struct Guns {
-    struct Vector3D Gun[30];
-    struct FireData Data[30];
-    int amount;
-};
-struct Context {
-    double Temperature;
-    double Pressure;
-    double Humidity;
-    struct Vector2D Wind;
-};
-struct Missile {
-    double Velocity;
-    double Vx;
-    double Vy;
-    double Vz;
-    double x;
-    double y;
-    double z;
-    double Summit;
-    double t;
-    double DisEr;
-    double SummitX;
-    double SummitY;
-    double SummitDis;
-    double AOI;
-};
-struct QuadrantUpdate {
-    double Range;
-    double CD;
-    double MuzzVel;
-    struct Vector3D Tgt;
-    struct Vector3D Gun;
-    struct Context *Atmosphere;
-    struct Config *Cfg;
-};
-
-*/
 
 int main(void) {
 
@@ -160,7 +54,7 @@ int main(void) {
     // GUN DATA
 
     Gun->amount = 3;
-    Gun->Gun[0].x = 3979;
+    Gun->Gun[0].x = 3978;
     Gun->Gun[0].y = 4004;
     Gun->Gun[0].z = 5;
     Gun->Gun[1].x = 3996;
@@ -216,7 +110,7 @@ int main(void) {
 
     // FIRE SOLUTION SETTINGS
 
-    Cfg->FullInfo = 0;
+    Cfg->FullInfo = 1;
     Cfg->dt = 0.001;
 
 
