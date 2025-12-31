@@ -58,7 +58,10 @@ struct Missile IntegrationLoop(double dt, double CD, double MuzzVel, double Quad
 
     for(Projectile.t = 0; Projectile.Vz > 0 || Projectile.z > Tgt.z; Projectile.t += dt) {
 
-        Projectile.Velocity = sqrt( Projectile.Vx*Projectile.Vx + Projectile.Vy*Projectile.Vy + Projectile.Vz*Projectile.Vz);
+        double tVx = Projectile.Vx - Atmosphere->Wind.x;
+        double tVy = Projectile.Vy - Atmosphere->Wind.y;
+
+        Projectile.Velocity = sqrt( tVx*tVx + tVy*tVy + Projectile.Vz*Projectile.Vz);
 
         const double drag = dt * CD * Projectile.Velocity;
 
