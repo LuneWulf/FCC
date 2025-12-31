@@ -92,17 +92,21 @@ void PrintSolutions(int i, struct Guns *Gun, struct Aimpoints *Aimpoint, struct 
     const double Range = sqrt( dX*dX + dY*dY);
 
     printf("----------- Gun #%d Fire Solutions -----------\n\n", i + 1);
-    printf("Charge: %d\n", Charge);
-    printf("Target Range: %.f m\n", Range);
-    printf("Charge Max Range: %.f m\n\n", Charges->MaxRange[Charge]);
 
     if (Invalid == 1) {
+
+        printf("Charge: Not Found!\n");
+        printf("Target Range: %.f m\n\n", Range);
 
         printf("        !!! GUN #%d SOLUTION INVALID !!!\n", i + 1);
         printf("         ATTEMPT WITH DIFFERENT CHARGE,\n");
         printf("          ELSE TARGET IS OUT OF RANGE\n\n");
 
     } else {
+
+        printf("Charge: %d\n", Charge);
+        printf("Target Range: %.f m\n", Range);
+        printf("Charge Max Range: %.f m\n\n", Charges->MaxRange[Charge]);
 
         if ((Charges->MaxRange[Charge] - Gun->Data[i].DistanceTravelled) < 500) {
             printf("WARNING: TARGET IS WITHIN 500 METERS OF MAX RANGE!\n\n");
