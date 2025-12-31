@@ -98,6 +98,7 @@ void PrintAllSolutions(struct Context *Atmosphere, struct Aimpoints *Tgts, struc
         case 3:
         case 4:
         case 5:
+        case 6:
 
             for (int i = 0; i < Gun->amount; i++) {
 
