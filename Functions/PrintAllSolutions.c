@@ -58,10 +58,43 @@
 #include "../Headers/SolutionSolver.h"
 #include "../Headers/PrintSolutions.h"
 #include "../Headers/ChargeFinder.h"
+#include <stdio.h>
 
 void PrintAllSolutions(struct Context *Atmosphere, struct Aimpoints *Tgts, struct Guns *Gun, struct Ammo *Charges, int Charge, struct Config *Cfg, struct Adjustments *Adjust) {
 
     const int middle = Gun->amount / 2 + 1;
+
+    char *SheafType;
+
+    switch (Tgts->SheafType) {
+        case 0:
+            SheafType = "Parallel";
+            break;
+        case 1:
+            SheafType = "Open";
+            break;
+        case 2:
+            SheafType = "Converged";
+            break;
+        case 3:
+            SheafType = "Linear";
+            break;
+        case 4:
+            SheafType = "Rectangular";
+            break;
+        case 5:
+            SheafType = "Circular";
+            break;
+        case 6:
+            SheafType = "Irregular";
+            break;
+        default:
+            SheafType = "Invalid";
+            break;
+    }
+
+    printf("\n-|-|-|-|-|- FIRE SOLUTIONS -|-|-|-|-|-\n");
+    printf("Sheaf type: %s\n\n", SheafType);
 
     switch (Tgts->SheafType) {
         case 0:
