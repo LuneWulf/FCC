@@ -145,5 +145,8 @@ void PrintAllSolutions(struct Context *Atmosphere, struct Aimpoints *Tgts, struc
             }
 
             break;
+
+        default:
+            break;
     }
 }
