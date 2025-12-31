@@ -71,10 +71,10 @@ void PrintAllSolutions(struct Context *Atmosphere, struct Aimpoints *Tgts, struc
             SheafType = "Parallel";
             break;
         case 1:
-            SheafType = "Open";
+            SheafType = "Converged";
             break;
         case 2:
-            SheafType = "Converged";
+            SheafType = "Open";
             break;
         case 3:
             SheafType = "Linear";
