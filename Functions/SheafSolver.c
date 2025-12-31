@@ -234,12 +234,15 @@ struct Aimpoints *SheafSolver(struct BoundingGrids *Bounds, struct Guns *Gun) {
 
             for (int i = 1; i < Gun->amount; i++) {
 
+                int NewInterval = 0;
+
                 double adjustXY = DistanceInterval;
 
                 Length[interval] -= DistanceInterval;
 
                 while (Length[interval] < 0) {
                     interval++;
+                    NewInterval++;
                     Length[interval] += Length[interval - 1];
                     adjustXY = -Length[interval - 1];
                 }
@@ -247,6 +250,12 @@ struct Aimpoints *SheafSolver(struct BoundingGrids *Bounds, struct Guns *Gun) {
                 double dz = Bounds->Grid[interval].z - Bounds->Grid[interval + 1].x;
                 double theta = dz / Length[interval];
                 double adjustZ = adjustXY * theta;
+
+                if (NewInterval > 0) {
+                    Aimpoint->Aimpoint[i].x = Bounds->Grid[interval + NewInterval - 1].x + sin(Direction[interval]) * adjustXY;
+                    Aimpoint->Aimpoint[i].y = Bounds->Grid[interval + NewInterval - 1].y + cos(Direction[interval]) * adjustXY;
+                    Aimpoint->Aimpoint[i].z = Bounds->Grid[interval + NewInterval - 1].z + adjustZ;
+                }
 
                 Aimpoint->Aimpoint[i].x = Aimpoint->Aimpoint[i - 1].x + sin(Direction[interval]) * adjustXY;
                 Aimpoint->Aimpoint[i].y = Aimpoint->Aimpoint[i - 1].y + cos(Direction[interval]) * adjustXY;
