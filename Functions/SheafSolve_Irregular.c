@@ -10,6 +10,8 @@
 
 void SheafSolve_Irregular (struct Guns *Gun, struct Aimpoints *Aimpoint, struct BoundingGrids *Bounds) {
 
+    Aimpoint->amount = Gun->amount;
+
     int EqualGunAndBounds = (Gun->amount == Bounds->GridAmount) ? 1 : 0;
 
     switch (EqualGunAndBounds) {
