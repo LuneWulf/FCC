@@ -56,6 +56,11 @@ struct Missile IntegrationLoop(double dt, double CD, double MuzzVel, double Quad
     Projectile.DisEr = 0;
     Projectile.t = 0;
 
+    /* Add later:
+     * Interpolation of hit point so recorded x, y, and z coordinates are not from below the ground,
+     * but are from "exactly" when the projectile crosses the ground level.
+     */
+
     for(Projectile.t = 0; Projectile.Vz > 0 || Projectile.z > Tgt.z; Projectile.t += dt) {
 
         double tVx = Projectile.Vx - Atmosphere->Wind.x;
