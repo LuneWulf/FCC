@@ -63,8 +63,6 @@ struct FireData ChargeFinder(struct Vector3D Tgt, struct Vector3D Gun, struct Am
 
         if (Distance < Charges->MaxRange[i]) {
 
-            Cfg->MaxError = Cfg->dt * Charges->MuzzVel[i];
-
             Charge = SolutionSolver(Tgt, Gun, i, Charges, Cfg, Adjust, Atmosphere);
 
             if (Charge.DisErHigh <= Cfg->MaxError && Charge.DisErLow <= Cfg->MaxError) {
