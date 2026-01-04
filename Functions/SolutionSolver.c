@@ -53,8 +53,11 @@
 #include "../Headers/AdjustTgt.h"
 #include "../Headers/airDensity.h"
 #include "../Headers/IntegrationLoop.h"
+#include <stdio.h>
 #include "structs.h"
 #include <math.h>
+
+#include "CusaTan.h"
 
 struct FireData SolutionSolver(struct Vector3D Tgt, struct Vector3D Gun, int Charge, struct Ammo *Charges, struct Config *Cfg, struct Adjustments *Adjust, struct Context *Atmosphere) {
 
@@ -76,18 +79,13 @@ struct FireData SolutionSolver(struct Vector3D Tgt, struct Vector3D Gun, int Cha
     double Range = sqrt( dY*dY + dX*dX);
     double Quadrant = 90 * DEG_TO_RAD;
     double Deflection = VectorDir(Gun, Tgt);
+
+    printf("Deflection: %f\n\n", Deflection * RAD_TO_DEG);
+    printf("NE: %f, SE: %f, SW: %f, NW: %f\n\n", CusaTan(1,1) * RAD_TO_DEG, CusaTan(-1,1) * RAD_TO_DEG, CusaTan(-1,-1) * RAD_TO_DEG, CusaTan(1, -1) * RAD_TO_DEG);
     double _1Angle = Quadrant, _2Angle;
     double TempDeflection = Deflection;
 
-    struct QuadrantUpdate qu = {0};
-
-    qu.Range = Range;
-    qu.CD = CD;
-    qu.MuzzVel = MuzzVel;
-    qu.Tgt = Tgt;
-    qu.Gun = Gun;
-    qu.Atmosphere = Atmosphere;
-    qu.Cfg = Cfg;
+    struct QuadrantUpdate qu = {Range,CD,MuzzVel,Tgt,Gun,Atmosphere,Cfg};
 
     for (int i = 0; i <= 1; i++){
         if (i == 1) {
