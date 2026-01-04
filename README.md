@@ -21,3 +21,18 @@ Calculation of firing solutions given:
 - Atmospheric data (Temperature, humidity in decimal form, pressure and wind speed and direction)
 - Charge specified by user or found automatically.
 
+Future additions:
+- Airburst munition fires.
+- Different target references.
+  - Grid,
+  - Polar,
+  - TRPs, and
+  - Previous targets
+- Amount of rounds needed, then distributed amongst the guns
+  - Possibly with the addition of specifying exactly which guns are participating in the fire.
+- Time on target.
+  - Automatically calculate the time at which fires should be initiated to allow for a specific time on target instead of manually calculating this.
+- Adjustments relative to FO
+  - This requires knowledge of FO position.
+  - Adjustments are given as ADD/DROPP/LEFT/RIGHT relative to observer
+- For linear and rectangular sheafs, possibly use aimpoint as a marker of the targets middle instead of one of the ends.
