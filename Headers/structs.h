@@ -115,6 +115,8 @@ struct FireData {
     double DistanceTravelled;
     double ErrorHigh;
     double ErrorLow;
+    double MaxErrorHigh;
+    double MaxErrorLow;
 };
 
 #endif

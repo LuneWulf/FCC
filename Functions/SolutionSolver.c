@@ -88,14 +88,16 @@ struct FireData SolutionSolver(struct Vector3D Tgt, struct Vector3D Gun, int Cha
 
     struct QuadrantUpdate qu = {Range,CD,MuzzVel,Tgt,Gun,Atmosphere,Cfg};
 
-    Cfg->MaxError = 0.0001;
-    int MaxErrorChange = 0;
+    ProjectileData.MaxErrorHigh = Cfg->MaxError;
+    ProjectileData.MaxErrorLow = Cfg->MaxError;
 
     for (int i = 0; i <= 1; i++){
         if (i == 1) {
             Quadrant = 0;
             _1Angle = Quadrant;
         }
+
+        int MaxErrorChange = 0;
 
         Deflection = TempDeflection;
         int count = 0;
@@ -110,29 +112,31 @@ struct FireData SolutionSolver(struct Vector3D Tgt, struct Vector3D Gun, int Cha
 
             double RangeError = Range - ProjectileData.DistanceTravelled;
 
-            if ((RangeError >= Cfg->MaxError) || (RangeError <= -Cfg->MaxError)) {
+            if (RangeError >= (i == 0 ? ProjectileData.MaxErrorHigh : ProjectileData.MaxErrorLow) || RangeError <= -(i == 0 ? ProjectileData.MaxErrorHigh : ProjectileData.MaxErrorLow)) {
 
                 QuadrantUpdate(i, &InitialSweep, &_1Angle, &_2Angle, &Quadrant, Deflection,&RangeError, &Projectile, &ProjectileData, qu);
 
-            } else if (Projectile.DisEr > Cfg->MaxError) {
+            } else if (Projectile.DisEr > (i == 0 ? ProjectileData.MaxErrorHigh : ProjectileData.MaxErrorLow)) {
 
                 DeflectionUpdate(i, &InitialSweep, Projectile, Gun, &TempDeflection, &Deflection, &Quadrant);
 
             }
-
-            if (count >= 100 && MaxErrorChange < 4) {
+            if (count >= 100 && MaxErrorChange < 10) {
 
                 count = 0;
                 MaxErrorChange++;
 
-                Cfg->MaxError *= 10;
-
+                switch (i) {
+                    case 0: ProjectileData.MaxErrorHigh *= sqrt(10);
+                        break;
+                    case 1: ProjectileData.MaxErrorLow *= sqrt(10);
+                        break;
+                    default:
+                        break;
+                }
             }
 
-        } while ((Projectile.DisEr > Cfg->MaxError && count < 100));
-
-        printf("MaxErrorChange = %d\n\n", MaxErrorChange);
-        printf("MaxError = %.4f\n\n", Cfg->MaxError);
+        } while (Projectile.DisEr > (i == 0 ? ProjectileData.MaxErrorHigh : ProjectileData.MaxErrorLow) && count < 1000);
 
         switch (i) {
             case 0:

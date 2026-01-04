@@ -57,7 +57,7 @@ void PrintSolutions(int i, struct Guns *Gun, struct Aimpoints *Aimpoint, struct 
 
     const int Charge = Gun->Data[i].Charge;
 
-    if (Gun->Data[i].DisErHigh > Cfg->MaxError || Gun->Data[i].DisErLow > Cfg->MaxError|| Gun->Data[i].Charge == -1) {
+    if (Gun->Data[i].DisErHigh > Gun->Data[i].MaxErrorHigh || Gun->Data[i].DisErLow > Gun->Data[i].MaxErrorLow || Gun->Data[i].Charge == -1) {
         Invalid = 1;
     }
 
@@ -129,7 +129,7 @@ void PrintSolutions(int i, struct Guns *Gun, struct Aimpoints *Aimpoint, struct 
             printf("|        Summit:  %.f m,\n", Gun->Data[i].SummitHigh);
             printf("|  Summit Range:  %.f m,\n", Gun->Data[i].SummitDisHigh);
             printf("|     Hit Error:  %.2f m +/- %.2f m/mill,\n", Gun->Data[i].DisErHigh, Gun->Data[i].ErrorHigh);
-            printf("|     Max Error:  %.2f m\n\n", Cfg->MaxError);
+            printf("|     Max Error:  %.2f m\n\n", Gun->Data[i].MaxErrorHigh);
 
             printf("Low Angle:\n");
             printf("|    Deflection:  %.2f deg  /  %.1f mills,\n", Gun->Data[i].DeflectionLow * RAD_TO_DEG, Gun->Data[i].DeflectionLow * RAD_TO_MILLS);
@@ -140,7 +140,7 @@ void PrintSolutions(int i, struct Guns *Gun, struct Aimpoints *Aimpoint, struct 
             printf("|        Summit:  %.f m,\n", Gun->Data[i].SummitLow);
             printf("|  Summit Range:  %.f m,\n", Gun->Data[i].SummitDisLow);
             printf("|     Hit Error:  %.2f m +/- %.2f m/mill,\n", Gun->Data[i].DisErLow, Gun->Data[i].ErrorLow);
-            printf("|     Max Error:  %.2f m\n\n", Cfg->MaxError);
+            printf("|     Max Error:  %.2f m\n\n", Gun->Data[i].MaxErrorLow);
 
         } else {
 
