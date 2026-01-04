@@ -38,6 +38,7 @@
 
 #include "../Headers/IntegrationLoop.h"
 #include <math.h>
+#include <stdio.h>
 
 #include "CusaTan.h"
 
@@ -87,7 +88,7 @@ struct Missile IntegrationLoop(double dt, double CD, double MuzzVel, double Quad
     Projectile.AOI = atan( Projectile.Vz / sqrt( Projectile.Vx*Projectile.Vx + Projectile.Vy*Projectile.Vy) );
 
     double InterDz = Tgt.z - Projectile.z;
-    double InterDLat = InterDz / tan(Projectile.AOI);
+    double InterDLat = InterDz * tan(M_PI / 2 + Projectile.AOI);
     double InterDx = sin(InterDef) * InterDLat;
     double InterDy = cos(InterDef) * InterDLat;
 
