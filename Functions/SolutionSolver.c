@@ -80,12 +80,16 @@ struct FireData SolutionSolver(struct Vector3D Tgt, struct Vector3D Gun, int Cha
     double Quadrant = 90 * DEG_TO_RAD;
     double Deflection = VectorDir(Gun, Tgt);
 
-    printf("Deflection: %f\n\n", Deflection * RAD_TO_DEG);
+    //printf("Deflection: %f\n\n", Deflection * RAD_TO_DEG);
+    //printf("dX: %f,   dY: %f\n\n", dX, dY);
 
     double _1Angle = Quadrant, _2Angle;
     double TempDeflection = Deflection;
 
     struct QuadrantUpdate qu = {Range,CD,MuzzVel,Tgt,Gun,Atmosphere,Cfg};
+
+    Cfg->MaxError = 0.0001;
+    int MaxErrorChange = 0;
 
     for (int i = 0; i <= 1; i++){
         if (i == 1) {
@@ -116,7 +120,19 @@ struct FireData SolutionSolver(struct Vector3D Tgt, struct Vector3D Gun, int Cha
 
             }
 
-        } while ((Projectile.DisEr > Cfg->MaxError && count < 10000));
+            if (count >= 100 && MaxErrorChange < 4) {
+
+                count = 0;
+                MaxErrorChange++;
+
+                Cfg->MaxError *= 10;
+
+            }
+
+        } while ((Projectile.DisEr > Cfg->MaxError && count < 100));
+
+        printf("MaxErrorChange = %d\n\n", MaxErrorChange);
+        printf("MaxError = %.4f\n\n", Cfg->MaxError);
 
         switch (i) {
             case 0:
