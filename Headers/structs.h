@@ -61,6 +61,7 @@ struct Config {
     double MaxError;
     int FullInfo;
     int FindCharge;
+    int SolutionAngle;
 };
 
 #endif

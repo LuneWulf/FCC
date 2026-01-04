@@ -53,12 +53,31 @@
 
 void PrintSolutions(int i, struct GunStore *Gun, Aimpoints *Aimpoint, Ammo *Charges, struct Config *Cfg) {
 
-    int Invalid = 0;
+    int InvalidHigh = 0;
+    int InvalidLow = 0;
+    int InvalidCharge = 0;
 
     const int Charge = Gun->Data[i].Charge;
 
+    if (Gun->Data[i].Charge == -1) {
+
+        InvalidCharge = 1;
+
+    } else {
+        if (Gun->Data[i].DisErHigh > Gun->Data[i].MaxErrorHigh) {
+
+            InvalidHigh = 1;
+        }
+
+        if (Gun->Data[i].DisErLow > Gun->Data[i].MaxErrorLow) {
+
+            InvalidLow = 1;
+        }
+    }
+
+
     if (Gun->Data[i].DisErHigh > Gun->Data[i].MaxErrorHigh || Gun->Data[i].DisErLow > Gun->Data[i].MaxErrorLow || Gun->Data[i].Charge == -1) {
-        Invalid = 1;
+        InvalidHigh = 1;
     }
 
     double Dir, dX, dY;
@@ -96,10 +115,11 @@ void PrintSolutions(int i, struct GunStore *Gun, Aimpoints *Aimpoint, Ammo *Char
 
     printf("----------- Gun #%d Fire Solutions -----------\n\n", i + 1);
 
-    if (Invalid == 1) {
+    if (InvalidCharge == 1) {
 
         printf("Charge: Not Found!\n");
-        printf("Target Range: %.f m\n\n", Range);
+        printf("Target Range: %.f m\n", Range);
+        printf("Gun Max Range: %.f m\n\n", Charges->MaxRange[Charges->ChargeAmount - 1]);
 
         printf("        !!! GUN #%d SOLUTION INVALID !!!\n", i + 1);
         printf("         ATTEMPT WITH DIFFERENT CHARGE,\n");
@@ -120,39 +140,64 @@ void PrintSolutions(int i, struct GunStore *Gun, Aimpoints *Aimpoint, Ammo *Char
             const double HighDefDiff = Gun->Data[i].DeflectionHigh - Dir;
             const double LowDefDiff = Gun->Data[i].DeflectionLow - Dir;
 
-            printf("High Angle:\n");
-            printf("|    Deflection:  %.2f deg  /  %.1f mills,\n", Gun->Data[i].DeflectionHigh * RAD_TO_DEG, Gun->Data[i].DeflectionHigh * RAD_TO_MILLS);
-            printf("|   dDeflection:  %.2f deg  /  %.1f mills,\n", HighDefDiff * RAD_TO_DEG, HighDefDiff * RAD_TO_MILLS);
-            printf("|      Quadrant:  %.2f deg  /  %.1f mills,\n", Gun->Data[i].QuadrantHigh * RAD_TO_DEG, Gun->Data[i].QuadrantHigh * RAD_TO_MILLS);
-            printf("|           ToF:  %.2f s,\n", Gun->Data[i].ToFHigh);
-            printf("|           AOI:  %.2f deg,\n", Gun->Data[i].AOIHigh * RAD_TO_DEG);
-            printf("|        Summit:  %.f m,\n", Gun->Data[i].SummitHigh);
-            printf("|  Summit Range:  %.f m,\n", Gun->Data[i].SummitDisHigh);
-            printf("|     Hit Error:  %.2f m +/- %.2f m/mill,\n", Gun->Data[i].DisErHigh, Gun->Data[i].ErrorHigh);
-            printf("|     Max Error:  %.2f m\n\n", Gun->Data[i].MaxErrorHigh);
+            if (Cfg->SolutionAngle == 0 || Cfg->SolutionAngle == 1) {
+                printf("High Angle:\n");
+                printf("|    Deflection:  %.2f deg  /  %.1f mills,\n", Gun->Data[i].DeflectionHigh * RAD_TO_DEG, Gun->Data[i].DeflectionHigh * RAD_TO_MILLS);
+                printf("|   dDeflection:  %.2f deg  /  %.1f mills,\n", HighDefDiff * RAD_TO_DEG, HighDefDiff * RAD_TO_MILLS);
+                printf("|      Quadrant:  %.2f deg  /  %.1f mills,\n", Gun->Data[i].QuadrantHigh * RAD_TO_DEG, Gun->Data[i].QuadrantHigh * RAD_TO_MILLS);
+                printf("|           ToF:  %.2f s,\n", Gun->Data[i].ToFHigh);
+                printf("|           AOI:  %.2f deg,\n", Gun->Data[i].AOIHigh * RAD_TO_DEG);
+                printf("|        Summit:  %.f m,\n", Gun->Data[i].SummitHigh);
+                printf("|  Summit Range:  %.f m,\n", Gun->Data[i].SummitDisHigh);
+                printf("|     Hit Error:  %.2f m +/- %.2f m/mill,\n", Gun->Data[i].DisErHigh, Gun->Data[i].ErrorHigh);
+                printf("|     Max Error:  %.2f m\n\n", Gun->Data[i].MaxErrorHigh);
 
-            printf("Low Angle:\n");
-            printf("|    Deflection:  %.2f deg  /  %.1f mills,\n", Gun->Data[i].DeflectionLow * RAD_TO_DEG, Gun->Data[i].DeflectionLow * RAD_TO_MILLS);
-            printf("|   dDeflection:  %.2f deg  /  %.1f mills,\n", LowDefDiff * RAD_TO_DEG, LowDefDiff * RAD_TO_MILLS);
-            printf("|      Quadrant:  %.2f deg  /  %.1f mills,\n", Gun->Data[i].QuadrantLow * RAD_TO_DEG, Gun->Data[i].QuadrantLow * RAD_TO_MILLS);
-            printf("|           ToF:  %.2f s,\n", Gun->Data[i].ToFLow);
-            printf("|           AOI:  %.2f deg,\n", Gun->Data[i].AOILow * RAD_TO_DEG);
-            printf("|        Summit:  %.f m,\n", Gun->Data[i].SummitLow);
-            printf("|  Summit Range:  %.f m,\n", Gun->Data[i].SummitDisLow);
-            printf("|     Hit Error:  %.2f m +/- %.2f m/mill,\n", Gun->Data[i].DisErLow, Gun->Data[i].ErrorLow);
-            printf("|     Max Error:  %.2f m\n\n", Gun->Data[i].MaxErrorLow);
+            } else if (InvalidHigh == 1 && Cfg->SolutionAngle != 2) {
+                printf("High Angle:\n");
+                printf("|     HIGH ANGLE SOLUTION INVALID!\n\n");
+            }
+
+            if (Cfg->SolutionAngle == 0 || Cfg->SolutionAngle == 2) {
+                printf("Low Angle:\n");
+                printf("|    Deflection:  %.2f deg  /  %.1f mills,\n", Gun->Data[i].DeflectionLow * RAD_TO_DEG, Gun->Data[i].DeflectionLow * RAD_TO_MILLS);
+                printf("|   dDeflection:  %.2f deg  /  %.1f mills,\n", LowDefDiff * RAD_TO_DEG, LowDefDiff * RAD_TO_MILLS);
+                printf("|      Quadrant:  %.2f deg  /  %.1f mills,\n", Gun->Data[i].QuadrantLow * RAD_TO_DEG, Gun->Data[i].QuadrantLow * RAD_TO_MILLS);
+                printf("|           ToF:  %.2f s,\n", Gun->Data[i].ToFLow);
+                printf("|           AOI:  %.2f deg,\n", Gun->Data[i].AOILow * RAD_TO_DEG);
+                printf("|        Summit:  %.f m,\n", Gun->Data[i].SummitLow);
+                printf("|  Summit Range:  %.f m,\n", Gun->Data[i].SummitDisLow);
+                printf("|     Hit Error:  %.2f m +/- %.2f m/mill,\n", Gun->Data[i].DisErLow, Gun->Data[i].ErrorLow);
+                printf("|     Max Error:  %.2f m\n\n", Gun->Data[i].MaxErrorLow);
+
+            } else if (InvalidLow == 1 && Cfg->SolutionAngle != 1) {
+                printf("Low Angle:\n");
+                printf("|     HIGH ANGLE SOLUTION INVALID!\n\n");
+            }
+
 
         } else {
 
-            printf("High Angle:\n");
-            printf("|    Deflection:  %.2f deg  / %.1f mills,\n", Gun->Data[i].DeflectionHigh * RAD_TO_DEG, Gun->Data[i].DeflectionHigh * RAD_TO_MILLS);
-            printf("|      Quadrant:  %.2f deg  /  %.1f mills,\n", Gun->Data[i].QuadrantHigh * RAD_TO_DEG, Gun->Data[i].QuadrantHigh * RAD_TO_MILLS);
-            printf("|           ToF:  %.2f s\n\n", Gun->Data[i].ToFHigh);
+            if (Cfg->SolutionAngle == 0 || Cfg->SolutionAngle == 1) {
+                printf("High Angle:\n");
+                printf("|    Deflection:  %.2f deg  / %.1f mills,\n", Gun->Data[i].DeflectionHigh * RAD_TO_DEG, Gun->Data[i].DeflectionHigh * RAD_TO_MILLS);
+                printf("|      Quadrant:  %.2f deg  /  %.1f mills,\n", Gun->Data[i].QuadrantHigh * RAD_TO_DEG, Gun->Data[i].QuadrantHigh * RAD_TO_MILLS);
+                printf("|           ToF:  %.2f s\n\n", Gun->Data[i].ToFHigh);
 
-            printf("Low Angle:\n");
-            printf("|    Deflection:  %.2f deg  / %.1f mills,\n", Gun->Data[i].DeflectionLow * RAD_TO_DEG, Gun->Data[i].DeflectionLow * RAD_TO_MILLS);
-            printf("|      Quadrant:  %.2f deg  /  %.1f mills,\n", Gun->Data[i].QuadrantLow * RAD_TO_DEG, Gun->Data[i].QuadrantLow * RAD_TO_MILLS);
-            printf("|           ToF:  %.2f s\n\n", Gun->Data[i].ToFLow);
+            } else if (InvalidHigh == 1 && Cfg->SolutionAngle != 2) {
+                printf("High Angle:\n");
+                printf("|     HIGH ANGLE SOLUTION INVALID!\n\n");
+            }
+
+            if (Cfg->SolutionAngle == 0 || Cfg->SolutionAngle == 2) {
+                printf("Low Angle:\n");
+                printf("|    Deflection:  %.2f deg  / %.1f mills,\n", Gun->Data[i].DeflectionLow * RAD_TO_DEG, Gun->Data[i].DeflectionLow * RAD_TO_MILLS);
+                printf("|      Quadrant:  %.2f deg  /  %.1f mills,\n", Gun->Data[i].QuadrantLow * RAD_TO_DEG, Gun->Data[i].QuadrantLow * RAD_TO_MILLS);
+                printf("|           ToF:  %.2f s\n\n", Gun->Data[i].ToFLow);
+
+            } else if (InvalidLow == 1 && Cfg->SolutionAngle != 1) {
+                printf("Low Angle:\n");
+                printf("|     HIGH ANGLE SOLUTION INVALID!\n\n");
+            }
         }
     }
 }
