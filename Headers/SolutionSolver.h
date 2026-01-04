@@ -7,6 +7,6 @@
 #ifndef VECTOR_BALLISTICS_SOLUTIONSOLVER_H
 #define VECTOR_BALLISTICS_SOLUTIONSOLVER_H
 
-struct FireData SolutionSolver(struct Vector3D Tgt, struct Vector3D Gun, int Charge, struct Ammo *Charges, struct Config *Cfg, struct Adjustments *Adjust, struct Context *Atmosphere);
+FireData SolutionSolver(Vector3D Tgt, Vector3D Gun, int Charge, Ammo *Charges, struct Config *Cfg, struct Adjustments *Adjust, struct Context *Atmosphere);
 
 #endif //VECTOR_BALLISTICS_SOLUTIONSOLVER_H

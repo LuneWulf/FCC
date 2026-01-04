@@ -7,6 +7,6 @@
 #ifndef VECTOR_BALLISTICS_VECTORDISTANCE_H
 #define VECTOR_BALLISTICS_VECTORDISTANCE_H
 
-double VectorDistance(struct Vector3D VecFrom, struct Vector3D VecTo);
+double VectorDistance(Vector3D VecFrom, Vector3D VecTo);
 
 #endif //VECTOR_BALLISTICS_VECTORDISTANCE_H

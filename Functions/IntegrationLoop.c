@@ -43,9 +43,9 @@
 
 #include "CusaTan.h"
 
-struct Missile IntegrationLoop(double dt, double CD, double MuzzVel, double Quadrant, double Deflection, struct Vector3D Gun, struct Vector3D Tgt, struct Context *Atmosphere) {
+Missile IntegrationLoop(double dt, double CD, double MuzzVel, double Quadrant, double Deflection, Vector3D Gun, Vector3D Tgt, struct Context *Atmosphere) {
 
-    struct Missile Projectile;
+    Missile Projectile;
 
     Projectile.Velocity = MuzzVel;
     Projectile.Vx = MuzzVel * cos(Quadrant) * sin(Deflection);

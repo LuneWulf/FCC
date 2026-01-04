@@ -7,7 +7,7 @@
 #ifndef VECTOR_BALLISTICS_QUADRANTUPDATE_H
 #define VECTOR_BALLISTICS_QUADRANTUPDATE_H
 
-void QuadrantUpdate(int i, int *InitialSweep, double *_1Angle, double *_2Angle, double *Quadrant, double Deflection, double *RangeError, struct Missile *Projectile, struct FireData *ProjectileData, struct QuadrantUpdate qu);
+void QuadrantUpdate(int i, int *InitialSweep, double *_1Angle, double *_2Angle, double *Quadrant, double Deflection, double *RangeError, Missile *Projectile, FireData *ProjectileData, struct QuadrantUpdate qu);
 
 #endif //VECTOR_BALLISTICS_QUADRANTUPDATE_H
 

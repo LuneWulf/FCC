@@ -9,25 +9,25 @@
 #include <math.h>
 #include "structs.h"
 
-void SheafSolve_Irregular (struct Guns *Gun, struct Aimpoints *Aimpoint, struct BoundingGrids *Bounds) {
+void SheafSolve_Irregular (struct GunStore *Gun, Aimpoints *Aimpoint, Bounds *bounds) {
 
     Aimpoint->amount = Gun->amount;
 
-    int EqualGunAndBounds = (Gun->amount == Bounds->GridAmount) ? 1 : 0;
+    int EqualGunAndBounds = (Gun->amount == bounds->GridAmount) ? 1 : 0;
 
     switch (EqualGunAndBounds) {
         case 0: {
 
             double distance = 0;
 
-            double *Length = calloc(Bounds->GridAmount - 1, sizeof(double));
-            double *Direction = calloc(Bounds->GridAmount - 1, sizeof(double));
+            double *Length = calloc(bounds->GridAmount - 1, sizeof(double));
+            double *Direction = calloc(bounds->GridAmount - 1, sizeof(double));
 
-            for (int i = 0; i < Bounds->GridAmount - 1; i++) {
+            for (int i = 0; i < bounds->GridAmount - 1; i++) {
 
-                Direction[i] = VectorDir(Bounds->Grid[i], Bounds->Grid[i + 1]);
+                Direction[i] = VectorDir(bounds->Grid[i], bounds->Grid[i + 1]);
 
-                double tempDistance = VectorDistance(Bounds->Grid[i], Bounds->Grid[i + 1]);
+                double tempDistance = VectorDistance(bounds->Grid[i], bounds->Grid[i + 1]);
 
                 Length[i] = tempDistance;
                 distance += tempDistance;
@@ -38,9 +38,9 @@ void SheafSolve_Irregular (struct Guns *Gun, struct Aimpoints *Aimpoint, struct 
 
             int interval = 0;
 
-            Aimpoint->Aimpoint[0].x = Bounds->Grid[0].x;
-            Aimpoint->Aimpoint[0].y = Bounds->Grid[0].y;
-            Aimpoint->Aimpoint[0].z = Bounds->Grid[0].z;
+            Aimpoint->Aimpoint[0].x = bounds->Grid[0].x;
+            Aimpoint->Aimpoint[0].y = bounds->Grid[0].y;
+            Aimpoint->Aimpoint[0].z = bounds->Grid[0].z;
 
             for (int i = 1; i < Gun->amount; i++) {
 
@@ -57,14 +57,14 @@ void SheafSolve_Irregular (struct Guns *Gun, struct Aimpoints *Aimpoint, struct 
                     adjustXY = -Length[interval - 1];
                 }
 
-                double dz = Bounds->Grid[interval].z - Bounds->Grid[interval + 1].x;
+                double dz = bounds->Grid[interval].z - bounds->Grid[interval + 1].x;
                 double theta = dz / Length[interval];
                 double adjustZ = adjustXY * theta;
 
                 if (NewInterval > 0) {
-                    Aimpoint->Aimpoint[i].x = Bounds->Grid[interval + NewInterval - 1].x + sin(Direction[interval]) * adjustXY;
-                    Aimpoint->Aimpoint[i].y = Bounds->Grid[interval + NewInterval - 1].y + cos(Direction[interval]) * adjustXY;
-                    Aimpoint->Aimpoint[i].z = Bounds->Grid[interval + NewInterval - 1].z + adjustZ;
+                    Aimpoint->Aimpoint[i].x = bounds->Grid[interval + NewInterval - 1].x + sin(Direction[interval]) * adjustXY;
+                    Aimpoint->Aimpoint[i].y = bounds->Grid[interval + NewInterval - 1].y + cos(Direction[interval]) * adjustXY;
+                    Aimpoint->Aimpoint[i].z = bounds->Grid[interval + NewInterval - 1].z + adjustZ;
                 }
 
                 Aimpoint->Aimpoint[i].x = Aimpoint->Aimpoint[i - 1].x + sin(Direction[interval]) * adjustXY;
@@ -84,7 +84,7 @@ void SheafSolve_Irregular (struct Guns *Gun, struct Aimpoints *Aimpoint, struct 
 
             for (int i = 0; i < Gun->amount; i++) {
 
-                Aimpoint->Aimpoint[i] = Bounds->Grid[i];
+                Aimpoint->Aimpoint[i] = bounds->Grid[i];
 
             }
 

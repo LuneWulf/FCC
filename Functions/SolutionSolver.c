@@ -59,10 +59,10 @@
 
 #include "CusaTan.h"
 
-struct FireData SolutionSolver(struct Vector3D Tgt, struct Vector3D Gun, int Charge, struct Ammo *Charges, struct Config *Cfg, struct Adjustments *Adjust, struct Context *Atmosphere) {
+FireData SolutionSolver(Vector3D Tgt, Vector3D Gun, int Charge, Ammo *Charges, struct Config *Cfg, struct Adjustments *Adjust, struct Context *Atmosphere) {
 
-    struct FireData ProjectileData;
-    struct Missile Projectile;
+    FireData ProjectileData;
+    Missile Projectile;
 
     Tgt = AdjustTgt(Tgt, Gun, Adjust);
 
@@ -136,7 +136,7 @@ struct FireData SolutionSolver(struct Vector3D Tgt, struct Vector3D Gun, int Cha
                 }
             }
 
-        } while (Projectile.DisEr > (i == 0 ? ProjectileData.MaxErrorHigh : ProjectileData.MaxErrorLow) && count < 1000);
+        } while (Projectile.DisEr > (i == 0 ? ProjectileData.MaxErrorHigh : ProjectileData.MaxErrorLow) && count < 100);
 
         switch (i) {
             case 0:

@@ -7,6 +7,6 @@
 #ifndef VECTOR_BALLISTICS_DEFLECTIONUPDATE_H
 #define VECTOR_BALLISTICS_DEFLECTIONUPDATE_H
 
-void DeflectionUpdate(int i, int *InitialSweep, struct Missile Projectile, struct Vector3D Gun, double *VirDeflection, double *Deflection, double *Quadrant);
+void DeflectionUpdate(int i, int *InitialSweep, Missile Projectile, Vector3D Gun, double *VirDeflection, double *Deflection, double *Quadrant);
 
 #endif //VECTOR_BALLISTICS_DEFLECTIONUPDATE_H

@@ -7,6 +7,6 @@
 #ifndef FCC_SHEAFSOLVE_LINEAR_H
 #define FCC_SHEAFSOLVE_LINEAR_H
 
-void SheafSolve_Linear (struct Guns *Gun, struct Aimpoints *Aimpoint, struct BoundingGrids *Bounds, int middle);
+void SheafSolve_Linear (struct GunStore *Gun, Aimpoints *Aimpoint, Bounds *bounds);
 
 #endif //FCC_SHEAFSOLVE_LINEAR_H

@@ -52,9 +52,9 @@
 #include "../Headers/SolutionSolver.h"
 #include "structs.h"
 
-struct FireData ChargeFinder(struct Vector3D Tgt, struct Vector3D Gun, struct Ammo *Charges, struct Config *Cfg, struct Adjustments *Adjust, struct Context *Atmosphere) {
+FireData ChargeFinder(Vector3D Tgt, Vector3D Gun, Ammo *Charges, struct Config *Cfg, struct Adjustments *Adjust, struct Context *Atmosphere) {
 
-    struct FireData Charge;
+    FireData Charge;
 
     Charge.Charge = -1;
 

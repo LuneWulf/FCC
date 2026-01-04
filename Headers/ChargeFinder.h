@@ -7,6 +7,6 @@
 #ifndef VECTOR_BALLISTICS_CHARGEFINDER_H
 #define VECTOR_BALLISTICS_CHARGEFINDER_H
 
-struct FireData ChargeFinder(struct Vector3D Tgt, struct Vector3D Gun, struct Ammo *Charges, struct Config *Cfg, struct Adjustments *Adjust, struct Context *Atmosphere);
+FireData ChargeFinder(Vector3D Tgt, Vector3D Gun, Ammo *Charges, struct Config *Cfg, struct Adjustments *Adjust, struct Context *Atmosphere);
 
 #endif //VECTOR_BALLISTICS_CHARGEFINDER_H

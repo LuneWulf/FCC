@@ -7,6 +7,6 @@
 #ifndef VECTOR_BALLISTICS_SHEAFSOLVER_H
 #define VECTOR_BALLISTICS_SHEAFSOLVER_H
 
-struct Aimpoints *SheafSolver(struct BoundingGrids *Bounds, struct Guns *Gun);
+Aimpoints *SheafSolver(Bounds *bounds, struct GunStore *Gun);
 
 #endif //VECTOR_BALLISTICS_SHEAFSOLVER_H

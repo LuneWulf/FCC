@@ -39,10 +39,10 @@ struct MR MaxRange(struct Context *Atmosphere, double MuzzVel, struct Config *Cf
     double Range = 0;
     double PrevRange;
 
-    struct Vector3D Gun = {0,0,0};
-    struct Vector3D Tgt = {0,0,0};
+    Vector3D Gun = {0,0,0};
+    Vector3D Tgt = {0,0,0};
 
-    struct Missile Projectile;
+    Missile Projectile;
 
     double RD = airDensity(Atmosphere)/1.225;
     double CD = Cfg->kFactor*RD;
@@ -106,7 +106,7 @@ struct MR MaxRange(struct Context *Atmosphere, double MuzzVel, struct Config *Cf
 
         }
 
-    } while ((Angle1 - Angle2) > 0.0001 * DEG_TO_RAD || (Angle1 - Angle2) < -0.0001 * DEG_TO_RAD);
+    } while (Angle1 - Angle2 > 0.0001 * DEG_TO_RAD || Angle1 - Angle2 < -0.0001 * DEG_TO_RAD);
 
     Quadrant = (Angle1 + Angle2) / 2;
     MaxRange = (Range1 + Range2) / 2;

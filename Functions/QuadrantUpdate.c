@@ -51,7 +51,7 @@
 #include "../Headers/AdjustQuadrant.h"
 #include "structs.h"
 
-void QuadrantUpdate(int i, int *InitialSweep, double *_1Angle, double *_2Angle, double *Quadrant, double Deflection, double *RangeError, struct Missile *Projectile, struct FireData *ProjectileData, struct QuadrantUpdate qu) {
+void QuadrantUpdate(int i, int *InitialSweep, double *_1Angle, double *_2Angle, double *Quadrant, double Deflection, double *RangeError, Missile *Projectile, FireData *ProjectileData, struct QuadrantUpdate qu) {
     switch (i) {
         case 0:
             if (*InitialSweep == 1 && *RangeError > 0) {

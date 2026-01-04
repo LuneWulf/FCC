@@ -7,6 +7,6 @@
 #ifndef FCC_SHEAFSOLVE_OPEN_H
 #define FCC_SHEAFSOLVE_OPEN_H
 
-void SheafSolve_Open (struct Guns *Gun, struct Aimpoints *Aimpoint, struct BoundingGrids *Bounds, int middle);
+void SheafSolve_Open (struct GunStore *Gun, Aimpoints *Aimpoint, Bounds *Bounds, int middle);
 
 #endif //FCC_SHEAFSOLVE_OPEN_H

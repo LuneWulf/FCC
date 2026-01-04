@@ -1,11 +1,11 @@
 #ifndef AMMO
 #define AMMO
 
-struct Ammo {
+typedef struct {
     double MuzzVel[20];
     double MaxRange[20];
     int ChargeAmount;
-};
+} Ammo;
 
 #endif
 
@@ -22,21 +22,21 @@ struct MR {
 #ifndef VECTOR3D
 #define VECTOR3D
 
-struct Vector3D {
+typedef struct {
     double x;
     double y;
     double z;
-};
+} Vector3D;
 
 #endif
 
 #ifndef VECTOR2D
 #define VECTOR2D
 
-struct Vector2D {
+typedef struct {
     double x;
     double y;
-};
+} Vector2D;
 
 #endif
 
@@ -68,19 +68,19 @@ struct Config {
 #ifndef AIMPOINTS
 #define AIMPOINTS
 
-struct Aimpoints {
-    struct Vector3D Aimpoint[30];
+typedef struct {
+    Vector3D Aimpoint[30];
     int SheafType;
     int amount;
-};
+} Aimpoints;
 
 #endif
 
 #ifndef BOUNDINGGRIDS
 #define BOUNDINGGRIDS
 
-struct BoundingGrids {
-    struct Vector3D Grid[10];
+typedef struct {
+    Vector3D Grid[10];
     int GridAmount;
     double length;
     double width;
@@ -89,14 +89,14 @@ struct BoundingGrids {
     int SheafType;
     int allowMultipleAimpoints;
     double EBR;
-};
+} Bounds;
 
 #endif
 
 #ifndef FIREDATA
 #define FIREDATA
 
-struct FireData {
+typedef struct {
     int Charge;
     double DeflectionHigh;
     double DeflectionLow;
@@ -117,16 +117,16 @@ struct FireData {
     double ErrorLow;
     double MaxErrorHigh;
     double MaxErrorLow;
-};
+} FireData;
 
 #endif
 
 #ifndef GUNS
 #define GUNS
 
-struct Guns {
-    struct Vector3D Gun[30];
-    struct FireData Data[30];
+struct GunStore {
+    Vector3D Gun[30];
+    FireData Data[30];
     int amount;
 };
 
@@ -139,7 +139,7 @@ struct Context {
     double Temperature;
     double Pressure;
     double Humidity;
-    struct Vector2D Wind;
+    Vector2D Wind;
 };
 
 #endif
@@ -147,7 +147,7 @@ struct Context {
 #ifndef MISSILE
 #define MISSILE
 
-struct Missile {
+typedef struct {
     double Velocity;
     double Vx;
     double Vy;
@@ -162,7 +162,7 @@ struct Missile {
     double SummitY;
     double SummitDis;
     double AOI;
-};
+} Missile;
 
 #endif
 
@@ -173,8 +173,8 @@ struct QuadrantUpdate {
     double Range;
     double CD;
     double MuzzVel;
-    struct Vector3D Tgt;
-    struct Vector3D Gun;
+    Vector3D Tgt;
+    Vector3D Gun;
     struct Context *Atmosphere;
     struct Config *Cfg;
 };

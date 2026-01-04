@@ -7,6 +7,6 @@
 #ifndef VECTOR_BALLISTICS_VECTORDIR_H
 #define VECTOR_BALLISTICS_VECTORDIR_H
 
-double VectorDir(struct Vector3D VecFrom, struct Vector3D VecTo);
+double VectorDir(Vector3D VecFrom, Vector3D VecTo);
 
 #endif //VECTOR_BALLISTICS_VECTORDIR_H

@@ -17,7 +17,7 @@
 #include "structs.h"
 
 
-double VectorDir(struct Vector3D VecFrom, struct Vector3D VecTo) {
+double VectorDir(Vector3D VecFrom, Vector3D VecTo) {
 
     // In arma 3, direction is measured clockwise from the y-axis, hence rise becomes dX and run becomes dY.
 

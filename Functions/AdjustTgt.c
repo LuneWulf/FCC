@@ -22,9 +22,9 @@
 #include <math.h>
 #include "structs.h"
 
-struct Vector3D AdjustTgt(struct Vector3D Tgt, struct Vector3D Gun, struct Adjustments *Adjust) {
+Vector3D AdjustTgt(Vector3D Tgt, Vector3D Gun, struct Adjustments *Adjust) {
 
-    struct Vector3D TempTgt = Tgt;
+    Vector3D TempTgt = Tgt;
 
     if (Adjust->Range != 0 || Adjust->Lat != 0) {
         double TempDir = VectorDir(Gun, Tgt);

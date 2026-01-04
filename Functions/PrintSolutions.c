@@ -51,7 +51,7 @@
 
 #include "IntegrationLoop.h"
 
-void PrintSolutions(int i, struct Guns *Gun, struct Aimpoints *Aimpoint, struct Ammo *Charges, struct Config *Cfg) {
+void PrintSolutions(int i, struct GunStore *Gun, Aimpoints *Aimpoint, Ammo *Charges, struct Config *Cfg) {
 
     int Invalid = 0;
 

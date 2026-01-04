@@ -7,6 +7,6 @@
 #ifndef FCC_SHEAFSOLVE_RECTANGULAR_H
 #define FCC_SHEAFSOLVE_RECTANGULAR_H
 
-void SheafSolve_Rectangular (struct Guns *Gun, struct Aimpoints *Aimpoint, struct BoundingGrids *Bounds, int middle);
+void SheafSolve_Rectangular (struct GunStore *Gun, Aimpoints *Aimpoint, Bounds *Bounds, int middle);
 
 #endif //FCC_SHEAFSOLVE_RECTANGULAR_H

@@ -31,9 +31,9 @@ int main(int argc, char **argv) {
      *                       Aimpoints are distributed evenly along the lines connecting the grids)
      */
 
-    struct Ammo *Charges = calloc(1, sizeof(struct Ammo));
-    struct Guns *Gun = calloc(1, sizeof(struct Guns));
-    struct BoundingGrids *Bounds = calloc(1, sizeof(struct BoundingGrids));
+    Ammo *Charges = calloc(1, sizeof(Ammo));
+    struct GunStore *Gun = calloc(1, sizeof(struct GunStore));
+    Bounds *Bounds = calloc(1, sizeof(Bounds));
     struct Context *Atmosphere = calloc(1, sizeof(struct Context));
     struct Adjustments *Adjust = calloc(1, sizeof(struct Adjustments));
     struct Config *Cfg = calloc(1, sizeof(struct Config));
@@ -41,12 +41,12 @@ int main(int argc, char **argv) {
 
     // METEOROLOGICAL DATA
 
-    Atmosphere->Temperature = 18.8;
-    Atmosphere->Pressure = 1008.1;
-    Atmosphere->Humidity = 0.715;
+    Atmosphere->Temperature = 19.8;
+    Atmosphere->Pressure = 1008.3;
+    Atmosphere->Humidity = 0.7;
 
-    const double WindSpeed = 1.6;
-    double WindDir = 90;
+    const double WindSpeed = 3.2;
+    double WindDir = 225;
 
         WindDir *= DEG_TO_RAD;
 
@@ -56,24 +56,19 @@ int main(int argc, char **argv) {
     // GUN DATA
 
     Gun->amount = 1;
-    Gun->Gun[0].x = 14643;
-    Gun->Gun[0].y = 16749;
-    Gun->Gun[0].z = 19;
-    Gun->Gun[1].x = 3996;
-    Gun->Gun[1].y = 3994;
-    Gun->Gun[1].z = 5;
-    Gun->Gun[2].x = 4016;
-    Gun->Gun[2].y = 4000;
-    Gun->Gun[2].z = 5;
+    Gun->Gun[0].x = 21181;
+    Gun->Gun[0].y = 7335;
+    Gun->Gun[0].z = 21;
 
 
     // AMMUNITION DATA
 
-    Charges->MuzzVel[0] = 212.5;
-    Charges->MuzzVel[1] = 425;
-    Charges->MuzzVel[2] = 637.5;
-    Charges->MuzzVel[3] = 841.5;
-    Charges->ChargeAmount = 4;
+    Charges->MuzzVel[0] = 153.9;
+    Charges->MuzzVel[1] = 234;
+    Charges->MuzzVel[2] = 388.8;
+    Charges->MuzzVel[3] = 648;
+    Charges->MuzzVel[4] = 810;
+    Charges->ChargeAmount = 5;
     int Charge = 3;
     Cfg->FindCharge = 1;
     Cfg->kFactor = 0.00006;
@@ -85,12 +80,9 @@ int main(int argc, char **argv) {
     Bounds->allowMultipleAimpoints = 0;
 
     Bounds->GridAmount = 1;
-    Bounds->Grid[0].x = 9550;
-    Bounds->Grid[0].y = 17620;
-    Bounds->Grid[0].z = 127;
-    Bounds->Grid[1].x = 25800;
-    Bounds->Grid[1].y = 21475;
-    Bounds->Grid[1].z = 21;
+    Bounds->Grid[0].x = 9405;
+    Bounds->Grid[0].y = 20225;
+    Bounds->Grid[0].z = 117.5;
 
     Bounds->length = 100;
     Bounds->width = 30;
@@ -114,7 +106,7 @@ int main(int argc, char **argv) {
 
     Cfg->FullInfo = 1;
     Cfg->dt = 0.02;
-    Cfg->MaxError = 0.01;
+    Cfg->MaxError = 0.0001;
 
     // COMPUTATION
 
@@ -123,7 +115,7 @@ int main(int argc, char **argv) {
         Charges->MaxRange[i] = Test.Range;
     }
 
-    struct Aimpoints *Tgts = SheafSolver(Bounds, Gun);
+    Aimpoints *Tgts = SheafSolver(Bounds, Gun);
 
     PrintAllSolutions(Atmosphere, Tgts, Gun, Charges, Charge, Cfg, Adjust);
 

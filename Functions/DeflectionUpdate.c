@@ -36,9 +36,9 @@
 #include "../Headers/VectorDir.h"
 #include "structs.h"
 
-void DeflectionUpdate(int i, int *InitialSweep, struct Missile Projectile, struct Vector3D Gun, double *TempDeflection, double *Deflection, double *Quadrant) {
+void DeflectionUpdate(int i, int *InitialSweep, Missile Projectile, Vector3D Gun, double *TempDeflection, double *Deflection, double *Quadrant) {
 
-    struct Vector3D Hit = {Projectile.x, Projectile.y, 0};
+    Vector3D Hit = {Projectile.x, Projectile.y, 0};
 
     double dAz = *TempDeflection - VectorDir(Gun, Hit);
 

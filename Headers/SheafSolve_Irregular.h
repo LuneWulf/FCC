@@ -7,6 +7,6 @@
 #ifndef FCC_SHEAFSOLVE_IRREGULAR_H
 #define FCC_SHEAFSOLVE_IRREGULAR_H
 
-void SheafSolve_Irregular (struct Guns *Gun, struct Aimpoints *Aimpoint, struct BoundingGrids *Bounds);
+void SheafSolve_Irregular (struct GunStore *Gun, Aimpoints *Aimpoint, Bounds *bounds);
 
 #endif //FCC_SHEAFSOLVE_IRREGULAR_H
