@@ -25,6 +25,7 @@
 #include "../Headers/IntegrationLoop.h"
 #include "../Headers/Conversions.h"
 #include <math.h>
+#include "structs.h"
 
 struct MR MaxRange(struct Context *Atmosphere, double MuzzVel, struct Config *Cfg) {
 

@@ -2,27 +2,7 @@
 // Created by simon on 28-12-2025.
 //
 
-#ifndef VECTOR2D
-#define VECTOR2D
-
-struct Vector2D {
-    double x;
-    double y;
-};
-
-#endif
-
-#ifndef CONTEXT
-#define CONTEXT
-
-struct Context {
-    double Temperature;
-    double Pressure;
-    double Humidity;
-    struct Vector2D Wind;
-};
-
-#endif
+#include "structs.h"
 
 #ifndef VECTOR_BALLISTICS_AIRDENSITY_H
 #define VECTOR_BALLISTICS_AIRDENSITY_H

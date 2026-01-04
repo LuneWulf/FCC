@@ -49,6 +49,7 @@
 #include "../Headers/Conversions.h"
 #include "../Headers/QuadrantUpdate.h"
 #include "../Headers/AdjustQuadrant.h"
+#include "structs.h"
 
 void QuadrantUpdate(int i, int *InitialSweep, double *_1Angle, double *_2Angle, double *Quadrant, double Deflection, double *RangeError, struct Missile *Projectile, struct FireData *ProjectileData, struct QuadrantUpdate qu) {
     switch (i) {

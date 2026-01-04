@@ -2,28 +2,7 @@
 // Created by simon on 28-12-2025.
 //
 
-#ifndef VECTOR3D
-#define VECTOR3D
-
-struct Vector3D {
-    double x;
-    double y;
-    double z;
-};
-
-#endif
-
-#ifndef ADJUSTMENTS
-#define ADJUSTMENTS
-
-struct Adjustments {
-    double Range;
-    double Lat;
-    double NS;
-    double EW;
-};
-
-#endif
+#include "structs.h"
 
 #ifndef VECTOR_BALLISTICS_ADJUSTTGT_H
 #define VECTOR_BALLISTICS_ADJUSTTGT_H

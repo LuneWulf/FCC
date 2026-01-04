@@ -7,6 +7,7 @@
 #include "VectorDistance.h"
 #include <stdlib.h>
 #include <math.h>
+#include "structs.h"
 
 void SheafSolve_Irregular (struct Guns *Gun, struct Aimpoints *Aimpoint, struct BoundingGrids *Bounds) {
 

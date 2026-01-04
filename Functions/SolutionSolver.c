@@ -53,6 +53,7 @@
 #include "../Headers/AdjustTgt.h"
 #include "../Headers/airDensity.h"
 #include "../Headers/IntegrationLoop.h"
+#include "structs.h"
 #include <math.h>
 
 struct FireData SolutionSolver(struct Vector3D Tgt, struct Vector3D Gun, int Charge, struct Ammo *Charges, struct Config *Cfg, struct Adjustments *Adjust, struct Context *Atmosphere) {
@@ -117,7 +118,7 @@ struct FireData SolutionSolver(struct Vector3D Tgt, struct Vector3D Gun, int Cha
 
             }
 
-        } while ((Projectile.DisEr > Cfg->MaxError && count < 1000));
+        } while ((Projectile.DisEr > Cfg->MaxError && count < 10000));
 
         switch (i) {
             case 0:
@@ -128,6 +129,7 @@ struct FireData SolutionSolver(struct Vector3D Tgt, struct Vector3D Gun, int Cha
                 ProjectileData.DisErHigh = Projectile.DisEr;
                 ProjectileData.SummitDisHigh = Projectile.SummitDis;
                 ProjectileData.AOIHigh = Projectile.AOI;
+                ProjectileData.ErrorHigh = IntegrationLoop(Cfg->dt, CD, MuzzVel, Quadrant + 0.5 * MILLS_TO_RAD, Deflection + 0.5 * MILLS_TO_RAD, Gun, Tgt, Atmosphere).DisEr;
                 break;
             case 1:
                 ProjectileData.DeflectionLow = Deflection;
@@ -137,6 +139,7 @@ struct FireData SolutionSolver(struct Vector3D Tgt, struct Vector3D Gun, int Cha
                 ProjectileData.DisErLow = Projectile.DisEr;
                 ProjectileData.SummitDisLow = Projectile.SummitDis;
                 ProjectileData.AOILow = Projectile.AOI;
+                ProjectileData.ErrorLow = IntegrationLoop(Cfg->dt, CD, MuzzVel, Quadrant + 0.5 * MILLS_TO_RAD, Deflection + 0.5 * MILLS_TO_RAD, Gun, Tgt, Atmosphere).DisEr;
                 break;
             default:
                 break;

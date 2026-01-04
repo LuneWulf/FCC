@@ -4,6 +4,7 @@
 
 #include "SheafSolve_Rectangular.h"
 #include <math.h>
+#include "structs.h"
 
 
 void SheafSolve_Rectangular (struct Guns *Gun, struct Aimpoints *Aimpoint, struct BoundingGrids *Bounds, int middle) {

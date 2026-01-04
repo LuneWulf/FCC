@@ -59,6 +59,7 @@
 #include "../Headers/PrintSolutions.h"
 #include "../Headers/ChargeFinder.h"
 #include <stdio.h>
+#include "structs.h"
 
 void PrintAllSolutions(struct Context *Atmosphere, struct Aimpoints *Tgts, struct Guns *Gun, struct Ammo *Charges, int Charge, struct Config *Cfg, struct Adjustments *Adjust) {
 

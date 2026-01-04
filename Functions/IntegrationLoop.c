@@ -39,6 +39,7 @@
 #include "../Headers/IntegrationLoop.h"
 #include <math.h>
 #include <stdio.h>
+#include "structs.h"
 
 #include "CusaTan.h"
 

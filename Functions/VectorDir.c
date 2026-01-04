@@ -14,6 +14,8 @@
 
 #include "../Headers/VectorDir.h"
 #include "../Headers/CusaTan.h"
+#include "structs.h"
+
 
 double VectorDir(struct Vector3D VecFrom, struct Vector3D VecTo) {
 

@@ -34,6 +34,7 @@
 #include "../Headers/Conversions.h"
 #include "../Headers/DeflectionUpdate.h"
 #include "../Headers/VectorDir.h"
+#include "structs.h"
 
 void DeflectionUpdate(int i, int *InitialSweep, struct Missile Projectile, struct Vector3D Gun, double *TempDeflection, double *Deflection, double *Quadrant) {
 

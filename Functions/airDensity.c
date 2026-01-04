@@ -16,6 +16,7 @@
  */
 
 #include "../Headers/airDensity.h"
+#include "structs.h"
 
 #include <math.h>
 

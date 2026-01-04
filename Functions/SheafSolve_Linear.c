@@ -6,6 +6,7 @@
 #include "VectorDir.h"
 #include "VectorDistance.h"
 #include <math.h>
+#include "structs.h"
 
 void SheafSolve_Linear (struct Guns *Gun, struct Aimpoints *Aimpoint, struct BoundingGrids *Bounds, int middle) {
 

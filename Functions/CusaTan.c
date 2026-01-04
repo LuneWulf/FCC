@@ -13,7 +13,6 @@
  */
 
 #include "../Headers/CusaTan.h"
-
 #include <math.h>
 
 double CusaTan (double dX, double dY) {

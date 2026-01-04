@@ -50,6 +50,7 @@
 #include "../Headers/AdjustQuadrant.h"
 #include "../Headers/IntegrationLoop.h"
 #include <math.h>
+#include "structs.h"
 
 void AdjustQuadrant(int *InitialSweep, double *_1Angle, double *_2Angle, double *Quadrant, double Deflection, double *RangeError, struct Missile *Projectile, struct FireData *ProjectileData, struct QuadrantUpdate qu) {
     if (*RangeError < 0) {

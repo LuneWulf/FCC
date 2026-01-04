@@ -13,6 +13,7 @@
  */
 
 #include "../Headers/VectorDistance.h"
+#include "structs.h"
 #include <math.h>
 
 double VectorDistance(struct Vector3D VecFrom, struct Vector3D VecTo) {

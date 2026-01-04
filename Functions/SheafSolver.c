@@ -28,6 +28,7 @@
 #include "SheafSolve_Irregular.h"
 #include <stdlib.h>
 #include <math.h>
+#include "structs.h"
 
 struct Aimpoints *SheafSolver(struct BoundingGrids *Bounds, struct Guns *Gun) {
 

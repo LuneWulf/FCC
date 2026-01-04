@@ -50,6 +50,7 @@
 #include "../Headers/ChargeFinder.h"
 #include "../Headers/VectorDistance.h"
 #include "../Headers/SolutionSolver.h"
+#include "structs.h"
 
 struct FireData ChargeFinder(struct Vector3D Tgt, struct Vector3D Gun, struct Ammo *Charges, struct Config *Cfg, struct Adjustments *Adjust, struct Context *Atmosphere) {
 

@@ -45,8 +45,11 @@
 #include "../Headers/Conversions.h"
 #include "../Headers/PrintSolutions.h"
 #include "../Headers/VectorDir.h"
+#include "structs.h"
 #include <stdio.h>
 #include <math.h>
+
+#include "IntegrationLoop.h"
 
 void PrintSolutions(int i, struct Guns *Gun, struct Aimpoints *Aimpoint, struct Ammo *Charges, struct Config *Cfg) {
 
@@ -125,7 +128,7 @@ void PrintSolutions(int i, struct Guns *Gun, struct Aimpoints *Aimpoint, struct 
             printf("|           AOI:  %.2f deg,\n", Gun->Data[i].AOIHigh * RAD_TO_DEG);
             printf("|        Summit:  %.f m,\n", Gun->Data[i].SummitHigh);
             printf("|  Summit Range:  %.f m,\n", Gun->Data[i].SummitDisHigh);
-            printf("|     Hit Error:  %.3f m,\n", Gun->Data[i].DisErHigh);
+            printf("|     Hit Error:  %.3f m +/- %.3f m/mill,\n", Gun->Data[i].DisErHigh, Gun->Data[i].ErrorHigh);
             printf("|     Max Error:  %.3f m\n\n", Cfg->MaxError);
 
             printf("Low Angle:\n");
@@ -136,7 +139,7 @@ void PrintSolutions(int i, struct Guns *Gun, struct Aimpoints *Aimpoint, struct 
             printf("|           AOI:  %.2f deg,\n", Gun->Data[i].AOILow * RAD_TO_DEG);
             printf("|        Summit:  %.f m,\n", Gun->Data[i].SummitLow);
             printf("|  Summit Range:  %.f m,\n", Gun->Data[i].SummitDisLow);
-            printf("|     Hit Error:  %.3f m,\n", Gun->Data[i].DisErLow);
+            printf("|     Hit Error:  %.3f m +/- %.3f m/mill,\n", Gun->Data[i].DisErLow, Gun->Data[i].ErrorLow);
             printf("|     Max Error:  %.3f m\n\n", Cfg->MaxError);
 
         } else {

@@ -20,6 +20,7 @@
 #include "../Headers/AdjustTgt.h"
 #include "../Headers/VectorDir.h"
 #include <math.h>
+#include "structs.h"
 
 struct Vector3D AdjustTgt(struct Vector3D Tgt, struct Vector3D Gun, struct Adjustments *Adjust) {
 
