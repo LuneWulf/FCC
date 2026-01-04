@@ -1,7 +1,7 @@
 # FCC
 Fire Control Console, automatic fire solution console for arma 3.
 
-Will possibly be made into a GUI with GTK or using ARMA 3s own language SQF to allow in game use. TBD.
+Will possibly be made into a GUI with GTK or using ARMA 3s own scripting language SQF to allow in game use. TBD.
 
 
 Currently the console allows for the following:
