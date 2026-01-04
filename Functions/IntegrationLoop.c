@@ -39,6 +39,8 @@
 #include "../Headers/IntegrationLoop.h"
 #include <math.h>
 
+#include "CusaTan.h"
+
 struct Missile IntegrationLoop(double dt, double CD, double MuzzVel, double Quadrant, double Deflection, struct Vector3D Gun, struct Vector3D Tgt, struct Context *Atmosphere) {
 
     struct Missile Projectile;
@@ -56,11 +58,6 @@ struct Missile IntegrationLoop(double dt, double CD, double MuzzVel, double Quad
     Projectile.DisEr = 0;
     Projectile.t = 0;
 
-    /* Add later:
-     * Interpolation of hit point so recorded x, y, and z coordinates are not from below the ground,
-     * but are from "exactly" when the projectile crosses the ground level.
-     */
-
     for(Projectile.t = 0; Projectile.Vz > 0 || Projectile.z > Tgt.z; Projectile.t += dt) {
 
         double tVx = Projectile.Vx - Atmosphere->Wind.x;
@@ -70,8 +67,8 @@ struct Missile IntegrationLoop(double dt, double CD, double MuzzVel, double Quad
 
         const double drag = dt * CD * Projectile.Velocity;
 
-        Projectile.Vx -= drag * (Projectile.Vx - Atmosphere->Wind.x);
-        Projectile.Vy -= drag * (Projectile.Vy - Atmosphere->Wind.y);
+        Projectile.Vx -= drag * tVx;
+        Projectile.Vy -= drag * tVy;
         Projectile.Vz -= drag * Projectile.Vz + dt * 9.81;
 
         Projectile.x += dt * Projectile.Vx;
@@ -85,12 +82,27 @@ struct Missile IntegrationLoop(double dt, double CD, double MuzzVel, double Quad
         }
     }
 
+    double InterDef = CusaTan(Projectile.Vy, Projectile.Vx);
+
+    Projectile.AOI = atan( Projectile.Vz / sqrt( Projectile.Vx*Projectile.Vx + Projectile.Vy*Projectile.Vy) );
+
+    double InterDz = Tgt.z - Projectile.z;
+    double InterDLat = InterDz / tan(Projectile.AOI);
+    double InterDx = sin(InterDef) * InterDLat;
+    double InterDy = cos(InterDef) * InterDLat;
+
+    Projectile.z = Tgt.z;
+    Projectile.x -= InterDx;
+    Projectile.y -= InterDy;
+
+    double InterDt = InterDz / Projectile.Vz;
+
+    Projectile.t -= InterDt;
+
     double SummitdX = Projectile.SummitX - Gun.x;
     double Summitdy = Projectile.SummitY - Gun.y;
 
     Projectile.SummitDis = sqrt(SummitdX*SummitdX + Summitdy*Summitdy);
-
-    Projectile.AOI = atan( Projectile.Vz / sqrt( Projectile.Vx*Projectile.Vx + Projectile.Vy*Projectile.Vy) );
 
     double errX = Projectile.x - Tgt.x;
     double errY = Projectile.y - Tgt.y;

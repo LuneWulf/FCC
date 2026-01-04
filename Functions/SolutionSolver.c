@@ -74,7 +74,6 @@ struct FireData SolutionSolver(struct Vector3D Tgt, struct Vector3D Gun, int Cha
 
     double Range = sqrt( dY*dY + dX*dX);
     double Quadrant = 90 * DEG_TO_RAD;
-    //double Quadrant = ((double) 75.145 / (double) 180) * M_PI;
     double Deflection = VectorDir(Gun, Tgt);
     double _1Angle = Quadrant, _2Angle;
     double TempDeflection = Deflection;
@@ -141,7 +140,7 @@ struct FireData SolutionSolver(struct Vector3D Tgt, struct Vector3D Gun, int Cha
                 break;
             default:
                 break;
-        };
+        }
     }
 
     ProjectileData.Charge = Charge;
