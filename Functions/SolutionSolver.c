@@ -81,7 +81,7 @@ struct FireData SolutionSolver(struct Vector3D Tgt, struct Vector3D Gun, int Cha
     double Deflection = VectorDir(Gun, Tgt);
 
     printf("Deflection: %f\n\n", Deflection * RAD_TO_DEG);
-    printf("NE: %f, SE: %f, SW: %f, NW: %f\n\n", CusaTan(1,1) * RAD_TO_DEG, CusaTan(-1,1) * RAD_TO_DEG, CusaTan(-1,-1) * RAD_TO_DEG, CusaTan(1, -1) * RAD_TO_DEG);
+
     double _1Angle = Quadrant, _2Angle;
     double TempDeflection = Deflection;
 
