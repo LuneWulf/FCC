@@ -93,7 +93,7 @@ void PrintAllSolutions(struct Context *Atmosphere, struct Aimpoints *Tgts, struc
             break;
     }
 
-    printf("\n-|-|-|-|-|- FIRE SOLUTIONS -|-|-|-|-|-\n");
+    printf("\n-|-|-|-|-|-|-|- FIRE SOLUTIONS -|-|-|-|-|-|-|-\n");
     printf("Sheaf type: %s\n\n", SheafType);
 
     switch (Tgts->SheafType) {
