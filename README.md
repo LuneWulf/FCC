@@ -15,7 +15,7 @@ Calculation of firing solutions given:
     - Converged (Gives a high and low solution unique to each gun to hit the same point)
     - Open (Gives a high and low solution unique to each gun to hit a point which is an effective burst diameter to the side of the aimpoint)
     - Linear (Gives evenly spaced out aimpoints for each gun along a line designated either by two bounding grids or a length and an attitude (direction))
-    - Rectangular (Gives evenly spaced out aimpoints along to "rails" which are parallel to the given attitude with a given length)
+    - Rectangular (Gives evenly spaced out aimpoints along two "rails" which are parallel to the given attitude with a given length)
     - Circular (Gives evenly spaced out aimpoints along a concentric circle of half the provided radius)
     - Irregular (Gives evenly spaced out aimpoints on the lines connecting the aimpoints)
 - Atmospheric data (Temperature, humidity in decimal form, pressure and wind speed and direction)
