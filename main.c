@@ -69,8 +69,8 @@ int main(int argc, char **argv) {
     Charges->MuzzVel[3] = 648;
     Charges->MuzzVel[4] = 810;
     Charges->ChargeAmount = 5;
-    int Charge = 3;
-    Cfg->FindCharge = 1;
+    int Charge = 4;
+    Cfg->FindCharge = 0;
     Cfg->kFactor = 0.00006;
 
 
@@ -107,6 +107,7 @@ int main(int argc, char **argv) {
     Cfg->FullInfo = 1;
     Cfg->dt = 0.02;
     Cfg->MaxError = 0.0001;
+    Cfg->SolutionAngle = 0; // 0: Both high and low,   1: High angle only,   2: Low angle only.
 
     // COMPUTATION
 
@@ -118,6 +119,52 @@ int main(int argc, char **argv) {
     Aimpoints *Tgts = SheafSolver(Bounds, Gun);
 
     PrintAllSolutions(Atmosphere, Tgts, Gun, Charges, Charge, Cfg, Adjust);
+
+    /*
+
+    Vector3D testGun = {0,0,0};
+
+    Missile one = IntegrationLoop(0.02, 0.00006, 600, 45 * DEG_TO_RAD, 0 * DEG_TO_RAD, testGun, testGun, Atmosphere);
+    Missile two = IntegrationLoop(0.04, 0.00006, 600, 45 * DEG_TO_RAD, 0 * DEG_TO_RAD, testGun, testGun, Atmosphere);
+    Missile three = IntegrationLoop(0.08, 0.00006, 600, 45 * DEG_TO_RAD, 0 * DEG_TO_RAD, testGun, testGun, Atmosphere);
+    Missile four = IntegrationLoop(0.16, 0.00006, 600, 45 * DEG_TO_RAD, 0 * DEG_TO_RAD, testGun, testGun, Atmosphere);
+    Missile five = IntegrationLoop(0.32, 0.00006, 600, 45 * DEG_TO_RAD, 0 * DEG_TO_RAD, testGun, testGun, Atmosphere);
+    Missile six = IntegrationLoop(0.64, 0.00006, 600, 45 * DEG_TO_RAD, 0 * DEG_TO_RAD, testGun, testGun, Atmosphere);
+    Missile seven = IntegrationLoop(1.28, 0.00006, 600, 45 * DEG_TO_RAD, 0 * DEG_TO_RAD, testGun, testGun, Atmosphere);
+    Missile eight = IntegrationLoop(2.56, 0.00006, 600, 45 * DEG_TO_RAD, 0 * DEG_TO_RAD, testGun, testGun, Atmosphere);
+
+    double oneTwoDx = one.x - two.x;
+    double oneTwoDy = one.y - two.y;
+    double oneThreeDx = one.x - three.x;
+    double oneThreeDy = one.y - three.y;
+    double oneFourDx = one.x - four.x;
+    double oneFourDy = one.y - four.y;
+    double oneFiveDx = one.x - five.x;
+    double oneFiveDy = one.y - five.y;
+    double oneSixDx = one.x - six.x;
+    double oneSixDy = one.y - six.y;
+    double oneSevenDx = one.x - seven.x;
+    double oneSevenDy = one.y - seven.y;
+    double oneEightDx = one.x - eight.x;
+    double oneEightDy = one.y - eight.y;
+
+    double oneTwoDis = sqrt( oneTwoDx*oneTwoDx + oneTwoDy*oneTwoDy );
+    double oneThreeDis = sqrt( oneThreeDx*oneThreeDx + oneThreeDy*oneThreeDy );
+    double oneFourDis = sqrt( oneFourDx*oneFourDx + oneFourDy*oneFourDy );
+    double oneFiveDis = sqrt( oneFiveDx*oneFiveDx + oneFiveDy*oneFiveDy );
+    double oneSixDis = sqrt( oneSixDx*oneSixDx + oneSixDy*oneSixDy );
+    double oneSevenDis = sqrt( oneSevenDx*oneSevenDx + oneSevenDy*oneSevenDy );
+    double oneEightDis = sqrt( oneEightDx*oneEightDx + oneEightDy*oneEightDy );
+
+    printf("dt 0.04 diff: %f m\n", oneTwoDis);
+    printf("dt 0.08 diff: %f m\n", oneThreeDis);
+    printf("dt 0.16 diff: %f m\n", oneFourDis);
+    printf("dt 0.32 diff: %f m\n", oneFiveDis);
+    printf("dt 0.64 diff: %f m\n", oneSixDis);
+    printf("dt 1.28 diff: %f m\n", oneSevenDis);
+    printf("dt 2.56 diff: %f m\n\n", oneEightDis);
+
+    */
 
     clock_t stop = clock();
 
@@ -138,6 +185,7 @@ int main(int argc, char **argv) {
     Cfg = NULL;
     free(Tgts);
     Tgts = NULL;
+
 
     return 0;
 }
