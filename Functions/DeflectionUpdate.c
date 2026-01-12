@@ -51,4 +51,6 @@ void DeflectionUpdate(int i, int *InitialSweep, Missile Projectile, Vector3D Gun
     } else {
         *Quadrant = 0;
     }
+
+
 }

@@ -116,6 +116,8 @@ int main(int argc, char **argv) {
         Charges->MaxRange[i] = Test.Range;
     }
 
+    printf("\nGun Max Range: %.f m\n", Charges->MaxRange[Charges->ChargeAmount - 1]);
+
     Aimpoints *Tgts = SheafSolver(Bounds, Gun);
 
     PrintAllSolutions(Atmosphere, Tgts, Gun, Charges, Charge, Cfg, Adjust);
